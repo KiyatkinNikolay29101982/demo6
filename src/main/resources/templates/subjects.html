@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All subjects</title>
+</head>
+<body>
+    <h1>All subjects</h1>
+    <table>
+        <tr>
+            <th>id:</th>
+            <th>name:</th>
+            <th>course name:</th>
+        </tr>
+        <tr th:each="subject: ${subjects}">
+            <td th:text="${subject.id}"></td>
+            <td th:text="${subject.name}"></td>
+            <td th:text="${subject.getCourseId()}"></td>
+        </tr>
+    </table>
+    <h1>Создание предмета</h1>
+    <form action="#" th:action="@{/saveNewSubject}" th:object="${subject}" method="post">
+        <label>Name subject</label>
+        <input type="text" name="name" placeholder="input subjectName">
+        <label>Check course</label>
+        <select name="courseId" th:field="*{courseId}">
+            <option    th:each="course: ${courses}" th:value="${course.id}" th:text="${course.id}" ></option>
+        </select>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
